@@ -1,0 +1,91 @@
+<h1>
+  List of all blood tests
+</h1>
+
+<hr>
+
+<article>
+  <header>
+    <h2>
+      Add a new blood test
+    </h2>
+  </header>
+
+  <form action="/insert_blood_test" method="post">
+    <div>
+      <label for="user_id_box">
+        User
+      </label>
+
+      <input type="text" id="user_id_box" name="query_user_id">
+    </div>
+
+    <div>
+      <label for="vitamin_d_box">
+        Vitamin d
+      </label>
+
+      <input type="text" id="vitamin_d_box" name="query_vitamin_d">
+    </div>
+
+    <div>
+      <label for="hba1c_box">
+        Hba1c
+      </label>
+
+      <input type="text" id="hba1c_box" name="query_hba1c">
+    </div>
+
+    <div>
+      <label for="hdl_box">
+        Hdl
+      </label>
+
+      <input type="text" id="hdl_box" name="query_hdl">
+    </div>
+
+    <div>
+      <label for="ldl_box">
+        Ldl
+      </label>
+
+      <input type="text" id="ldl_box" name="query_ldl">
+    </div>
+
+    <div>
+      <label for="openai_conv_id_box">
+        Openai conv
+      </label>
+
+      <input type="text" id="openai_conv_id_box" name="query_openai_conv_id">
+    </div>
+
+    <div>
+      <label for="summary_box">
+        Summary
+      </label>
+
+      <input type="text" id="summary_box" name="query_summary">
+    </div>
+
+    <button type="submit">
+      Create blood test
+    </button>
+  </form>
+</article>
+
+<hr>
+
+<article>
+  <ul>
+    <% @list_of_blood_tests.each do |a_blood_test| %>
+      <li>
+        <a href="/blood_tests/<%= a_blood_test.id %>">
+          Blood test #<%= a_blood_test.id %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</article>
+
+<hr>

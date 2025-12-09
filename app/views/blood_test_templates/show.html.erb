@@ -1,0 +1,156 @@
+<h1>
+  Blood test #<%= @the_blood_test.id %> details
+</h1>
+
+<article>
+  <div>
+    <a href="/blood_tests">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_blood_test/<%= @the_blood_test.id %>">
+      Delete blood test
+    </a>
+  </div>
+  <dl>
+    <dt>
+      User
+    </dt>
+    <dd>
+      <%= @the_blood_test.user_id %>
+    </dd>
+
+    <dt>
+      Vitamin d
+    </dt>
+    <dd>
+      <%= @the_blood_test.vitamin_d %>
+    </dd>
+
+    <dt>
+      Hba1c
+    </dt>
+    <dd>
+      <%= @the_blood_test.hba1c %>
+    </dd>
+
+    <dt>
+      Hdl
+    </dt>
+    <dd>
+      <%= @the_blood_test.hdl %>
+    </dd>
+
+    <dt>
+      Ldl
+    </dt>
+    <dd>
+      <%= @the_blood_test.ldl %>
+    </dd>
+
+    <dt>
+      Openai conv
+    </dt>
+    <dd>
+      <%= @the_blood_test.openai_conv_id %>
+    </dd>
+
+    <dt>
+      Summary
+    </dt>
+    <dd>
+      <%= @the_blood_test.summary %>
+    </dd>
+
+    <dt>
+      Created at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_blood_test.created_at) %> ago
+    </dd>
+
+    <dt>
+      Updated at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_blood_test.updated_at) %> ago
+    </dd>
+  </dl>
+</article>
+
+<hr>
+
+
+<article>
+  <header>
+    <h2>
+      Edit blood test
+    </h2>
+  </header>
+
+  <form action="/modify_blood_test/<%= @the_blood_test.id %>"  method="post" >
+    <div>
+      <label for="user_id_box">
+        User
+      </label>
+
+      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_blood_test.user_id %>">
+    </div>
+
+    <div>
+      <label for="vitamin_d_box">
+        Vitamin d
+      </label>
+
+      <input type="text" id="vitamin_d_box" name="query_vitamin_d" value="<%= @the_blood_test.vitamin_d %>">
+    </div>
+
+    <div>
+      <label for="hba1c_box">
+        Hba1c
+      </label>
+
+      <input type="text" id="hba1c_box" name="query_hba1c" value="<%= @the_blood_test.hba1c %>">
+    </div>
+
+    <div>
+      <label for="hdl_box">
+        Hdl
+      </label>
+
+      <input type="text" id="hdl_box" name="query_hdl" value="<%= @the_blood_test.hdl %>">
+    </div>
+
+    <div>
+      <label for="ldl_box">
+        Ldl
+      </label>
+
+      <input type="text" id="ldl_box" name="query_ldl" value="<%= @the_blood_test.ldl %>">
+    </div>
+
+    <div>
+      <label for="openai_conv_id_box">
+        Openai conv
+      </label>
+
+      <input type="text" id="openai_conv_id_box" name="query_openai_conv_id" value="<%= @the_blood_test.openai_conv_id %>">
+    </div>
+
+    <div>
+      <label for="summary_box">
+        Summary
+      </label>
+
+      <input type="text" id="summary_box" name="query_summary" value="<%= @the_blood_test.summary %>">
+    </div>
+
+    <button type="submit">
+      Update blood test
+    </button>
+  </form>
+</article>
+
+<hr>
