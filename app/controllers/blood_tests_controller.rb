@@ -29,7 +29,7 @@ class BloodTestsController < ApplicationController
 
     if the_blood_test.valid?
       the_blood_test.save
-      redirect_to("/blood_tests", { :notice => "Blood test created successfully." })
+      redirect_to("/blood_tests/#{the_blood_test.id}", { :notice => "Blood test created successfully." })
     else
       redirect_to("/blood_tests", { :alert => the_blood_test.errors.full_messages.to_sentence })
     end
