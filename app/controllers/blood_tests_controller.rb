@@ -1,6 +1,6 @@
 class BloodTestsController < ApplicationController
   def index
-    matching_blood_tests = BloodTest.all
+    matching_blood_tests = current_user.blood_tests
 
     @list_of_blood_tests = matching_blood_tests.order({ :created_at => :desc })
 
@@ -19,13 +19,13 @@ class BloodTestsController < ApplicationController
 
   def create
     the_blood_test = BloodTest.new
-    the_blood_test.user_id = params.fetch("query_user_id")
-    the_blood_test.vitamin_d = params.fetch("query_vitamin_d")
-    the_blood_test.hba1c = params.fetch("query_hba1c")
-    the_blood_test.hdl = params.fetch("query_hdl")
-    the_blood_test.ldl = params.fetch("query_ldl")
-    the_blood_test.openai_conv_id = params.fetch("query_openai_conv_id")
-    the_blood_test.summary = params.fetch("query_summary")
+    the_blood_test.user_id = current_user.id
+    # the_blood_test.vitamin_d = params.fetch("query_vitamin_d")
+    # the_blood_test.hba1c = params.fetch("query_hba1c")
+    # the_blood_test.hdl = params.fetch("query_hdl")
+    # the_blood_test.ldl = params.fetch("query_ldl")
+    # the_blood_test.openai_conv_id = params.fetch("query_openai_conv_id")
+    # the_blood_test.summary = params.fetch("query_summary")
 
     if the_blood_test.valid?
       the_blood_test.save

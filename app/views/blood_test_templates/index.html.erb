@@ -11,65 +11,16 @@
     </h2>
   </header>
 
-  <form action="/insert_blood_test" method="post">
+  <form action="/insert_blood_test" method="post" enctype="multipart/form-data">
+  
     <div>
-      <label for="user_id_box">
-        User
-      </label>
+      <label for="upload_bloodtest"></label>
 
-      <input type="text" id="user_id_box" name="query_user_id">
-    </div>
-
-    <div>
-      <label for="vitamin_d_box">
-        Vitamin d
-      </label>
-
-      <input type="text" id="vitamin_d_box" name="query_vitamin_d">
-    </div>
-
-    <div>
-      <label for="hba1c_box">
-        Hba1c
-      </label>
-
-      <input type="text" id="hba1c_box" name="query_hba1c">
-    </div>
-
-    <div>
-      <label for="hdl_box">
-        Hdl
-      </label>
-
-      <input type="text" id="hdl_box" name="query_hdl">
-    </div>
-
-    <div>
-      <label for="ldl_box">
-        Ldl
-      </label>
-
-      <input type="text" id="ldl_box" name="query_ldl">
-    </div>
-
-    <div>
-      <label for="openai_conv_id_box">
-        Openai conv
-      </label>
-
-      <input type="text" id="openai_conv_id_box" name="query_openai_conv_id">
-    </div>
-
-    <div>
-      <label for="summary_box">
-        Summary
-      </label>
-
-      <input type="text" id="summary_box" name="query_summary">
+      <input type="file" id="upload_bloodtest" name="query_bloodtest">
     </div>
 
     <button type="submit">
-      Create blood test
+      Upload new bloodtest
     </button>
   </form>
 </article>
