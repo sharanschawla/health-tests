@@ -1,0 +1,77 @@
+{
+  "name": "health_report_extraction",
+  "strict": true,
+  "schema": {
+    "type": "object",
+    "description": "Structured extraction of key health metrics and a clinical-style summary from a lab or medical report. The model should first interpret/translate the source text into English internally, then extract values.",
+    "properties": {
+      "test_center": {
+        "type": "object",
+        "description": "Information about the laboratory or clinic where the tests were performed, translated to English where possible.",
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Name of the test center, laboratory, or clinic as stated in the report, translated to English if needed. Use null if it cannot be determined."
+          },
+          "country": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Country where the test was performed, in English (e.g., \"Germany\", \"Brazil\"), or null if the country is not mentioned or cannot be inferred."
+          }
+        },
+        "required": [
+          "name",
+          "country"
+        ],
+        "additionalProperties": false
+      },
+      "created_on": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time",
+        "description": "Date and time when the report or tests were created, in ISO 8601 format (e.g., \"2024-03-15T09:30:00Z\"). Use null if the date/time is not available."
+      },
+      "ldl": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "LDL cholesterol value as an integer (e.g., 130), using the units from the report (commonly mg/dL). If multiple LDL values are present, choose the main or most recent one. Use null if no LDL value is given."
+      },
+      "hdl": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "HDL cholesterol value as an integer (e.g., 55), using the units from the report (commonly mg/dL). If multiple HDL values are present, choose the main or most recent one. Use null if no HDL value is given."
+      },
+      "vitamin_d": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Vitamin D level as an integer (e.g., 25), using the units from the report (commonly ng/mL or nmol/L). If multiple values are present, choose the main or most recent one. Use null if no vitamin D value is given."
+      },
+      "summary": {
+        "type": "string",
+        "description": "A clear, fluent English summary of the extracted values, focusing on LDL, HDL, and vitamin D. Explicitly state which values are within normal ranges and which are high or low, briefly explain the health implications, and provide specific, practical diet recommendations (e.g., foods to increase or avoid) to improve any abnormal values. If any of LDL, HDL, or vitamin D are missing from the report, clearly mention that those values were not found."
+      }
+    },
+    "required": [
+      "test_center",
+      "created_on",
+      "ldl",
+      "hdl",
+      "vitamin_d",
+      "summary"
+    ],
+    "additionalProperties": false
+  }
+}

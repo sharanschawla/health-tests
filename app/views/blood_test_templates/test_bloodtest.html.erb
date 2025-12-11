@@ -1,0 +1,64 @@
+<pre><%= @content.awesome_inspect(plain:true)%></pre>
+
+
+<article>
+  <div>
+    <a href="/blood_tests">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_blood_test/<%= @the_blood_test.id %>">
+      Delete blood test
+    </a>
+  </div>
+  <dl>
+    <dt>
+      User
+    </dt>
+    <dd>
+      <%= @the_blood_test.user_id %>
+    </dd>
+
+    <dt>
+      Vitamin d
+    </dt>
+    <dd>
+      <%= @the_blood_test.vitamin_d %>
+    </dd>
+
+    <dt>
+      Hba1c
+    </dt>
+    <dd>
+      <%= @the_blood_test.hba1c %>
+    </dd>
+
+    <dt>
+      Hdl
+    </dt>
+    <dd>
+      <%= @the_blood_test.hdl %>
+    </dd>
+
+    <dt>
+      Ldl
+    </dt>
+    <dd>
+      <%= @the_blood_test.ldl %>
+    </dd>
+
+    <dt>
+      Openai conv
+    </dt>
+    <dd>
+      <%= @the_blood_test.openai_conv_id %>
+    </dd>
+
+    <dt>
+      Summary
+    </dt>
+    <dd>
+      <%= @the_blood_test.summary %>
+    </dd>

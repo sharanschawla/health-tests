@@ -20,33 +20,35 @@ class BloodTestsController < ApplicationController
   def create
     the_blood_test = BloodTest.new
     the_blood_test.user_id = current_user.id
-    the_blood_test.pdf=params.fetch("new_bloodtest")
+    the_blood_test=params.fetch("new_bloodtest")
 
-    # chat=AI::Chat.new
-    # chat.user("Go through the bloodtest report and list all the values for each metric.", image: the_blood_test.pdf)
-    # chat.model="gpt-5.1"
-    # chat.reasoning_effort="high"
-    # chat.schema_file="schema.json"
-    # chat.user("Please itemize this receipt", image: raw_image)
-    # parsed_response = chat.generate!
-    # @content=parsed_response.fetch(:content)
+    chat=AI::Chat.new
+    # chat.proxy=true
+    chat.user("Go through the bloodtest report", file: the_blood_test)
+    chat.model="gpt-5.1"
+    chat.reasoning_effort="high"
+    chat.schema_file="schema.json"
+    @parsed_response = chat.generate!
+    @content=@parsed_response.fetch(:content)
 
 
-    @data_uri= DataURI.convert(the_blood_test.pdf)
+    @data_uri= DataURI.convert(the_blood_test)
    
+    render({:template=>"blood_test_templates/test_bloodtest"})
+
     # the_blood_test.vitamin_d = params.fetch("query_vitamin_d")
     # the_blood_test.hba1c = params.fetch("query_hba1c")
     # the_blood_test.hdl = params.fetch("query_hdl")
     # the_blood_test.ldl = params.fetch("query_ldl")
-    # the_blood_test.openai_conv_id = params.fetch("query_openai_conv_id")
-    # the_blood_test.summary = params.fetch("query_summary")
+    #the_blood_test.summary = params.fetch("query_summary")
 
-    if the_blood_test.valid?
-      the_blood_test.save
-      redirect_to("/blood_tests/#{the_blood_test.id}", { :notice => "Blood test created successfully." })
-    else
-      redirect_to("/blood_tests", { :alert => the_blood_test.errors.full_messages.to_sentence })
-    end
+    # if the_blood_test.valid?
+    #   the_blood_test.save
+    #   # redirect_to("/blood_tests/#{the_blood_test.id}", { :notice => "Blood test created successfully." })
+    # else
+    #   redirect_to("/blood_tests", { :alert => the_blood_test.errors.full_messages.to_sentence })
+    # end
+
   end
 
   def itemize
