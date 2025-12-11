@@ -20,6 +20,9 @@ class BloodTestsController < ApplicationController
   def create
     the_blood_test = BloodTest.new
     the_blood_test.user_id = current_user.id
+    raw_file=params.fetch("query_bloodtest")
+    @data_uri= DataURI.convert(raw_file)
+   
     # the_blood_test.vitamin_d = params.fetch("query_vitamin_d")
     # the_blood_test.hba1c = params.fetch("query_hba1c")
     # the_blood_test.hdl = params.fetch("query_hdl")
@@ -34,6 +37,14 @@ class BloodTestsController < ApplicationController
       redirect_to("/blood_tests", { :alert => the_blood_test.errors.full_messages.to_sentence })
     end
   end
+
+  def itemize
+    raw_file=params.fetch("receipt_image")
+    @data_uri= DataURI.convert(raw_file)
+    render({:template=>"blood_test_templates/show"})
+
+  end
+
 
   def update
     the_id = params.fetch("path_id")
