@@ -20,8 +20,19 @@ class BloodTestsController < ApplicationController
   def create
     the_blood_test = BloodTest.new
     the_blood_test.user_id = current_user.id
-    raw_file=params.fetch("query_bloodtest")
-    @data_uri= DataURI.convert(raw_file)
+    the_blood_test.pdf=params.fetch("new_bloodtest")
+
+    # chat=AI::Chat.new
+    # chat.user("Go through the bloodtest report and list all the values for each metric.", image: the_blood_test.pdf)
+    # chat.model="gpt-5.1"
+    # chat.reasoning_effort="high"
+    # chat.schema_file="schema.json"
+    # chat.user("Please itemize this receipt", image: raw_image)
+    # parsed_response = chat.generate!
+    # @content=parsed_response.fetch(:content)
+
+
+    @data_uri= DataURI.convert(the_blood_test.pdf)
    
     # the_blood_test.vitamin_d = params.fetch("query_vitamin_d")
     # the_blood_test.hba1c = params.fetch("query_hba1c")

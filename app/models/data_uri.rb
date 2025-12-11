@@ -1,3 +1,4 @@
+class DataUri < ApplicationRecord
 require "base64"
 
 class DataURI
@@ -9,3 +10,5 @@ class DataURI
     return "data:#{mime_type};base64,#{encoded}"
   end
 end
+end
+

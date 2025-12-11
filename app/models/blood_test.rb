@@ -5,7 +5,9 @@
 #  id             :bigint           not null, primary key
 #  hba1c          :integer
 #  hdl            :integer
+#  image          :string
 #  ldl            :integer
+#  pdf            :string
 #  summary        :string
 #  vitamin_d      :integer
 #  created_at     :datetime         not null
@@ -15,4 +17,6 @@
 #
 class BloodTest < ApplicationRecord
   belongs_to :user, required: true, class_name: "User", foreign_key: "user_id", counter_cache: true
+
+  mount_uploader :pdf, PdfUploader
 end
